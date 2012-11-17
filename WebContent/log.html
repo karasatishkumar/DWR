@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>index</title>
+<script type='text/javascript' src='dwr/engine.js'></script>
+<script type='text/javascript' src='dwr/util.js'></script>
+<script type='text/javascript'>
+function paintLog(messages){
+	for(var i = 0 ; i < messages.length ; i++){
+		var div = document.getElementById("messageBox");
+		var newdiv = document.createElement('div');
+  		newdiv.setAttribute('id','message');
+  		newdiv.innerHTML = messages[i];
+  		div.appendChild(newdiv);
+  	}
+}
+
+
+
+
+function switchOnReverseAJAX(){
+	dwr.engine.setActiveReverseAjax(true);
+}
+</script>
+<style>
+.message-text {
+	color : #000000;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 12px;
+}
+</style>
+</head>
+<body onload="switchOnReverseAJAX()">
+<center><font face="Verdana, Arial, Helvetica, sans-serif" size="6"><b>LOG TAILING (REVERSE AJAX)</b></font></center>
+<table align="center" width="70%" border="0" bgcolor="#E5E5E5" class="message-text">
+	<tr>
+		<td>
+		When ever there is any update to the server log file, the updates will be visible to the user interface.
+		I tried with tomcat 6 server, this will tail the catalina.out.
+		</td>
+	</tr>
+</table>
+<br>
+
+<table align="center" width="70%" border="0">
+	<tr>
+		<td> <div id="messageBox" class="message-text"></div> </td>
+	</tr>
+</table>
+</body>
+</html>

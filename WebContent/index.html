@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>index</title>
+<script type='text/javascript' src='dwr/engine.js'></script>
+<script type='text/javascript' src='/DWR/dwr/interface/SessionManager.js'></script>
+<script type='text/javascript' src='dwr/util.js'></script>
+<script type='text/javascript'>
+function update(message){
+	var div = document.getElementById("messageBox");
+	var newdiv = document.createElement('div');
+  	newdiv.setAttribute('id','message');
+  	newdiv.innerHTML = message;
+  	div.appendChild(newdiv);
+
+}
+
+function addScriptSession(param){
+	SessionManager.addScriptSession(param, {
+  		callback:function(str) { 
+  			
+  		}
+	});
+}
+</script>
+<style>
+.message-text {
+	color : #000000;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 12px;
+}
+</style>
+</head>
+<body>
+<center><font face="Verdana, Arial, Helvetica, sans-serif" size="6"><b>SERVER SIDE PUSHING (REVERSE AJAX)</b></font></center>
+<br>
+<table align="center" width="70%" border="0" bgcolor="#E5E5E5">
+	<tr>
+		<td>
+			<font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Select Parameter : </b></font></div>
+			<select class='message-text' onChange='addScriptSession(this.value)'>
+				<option value=''>--Select--</option>
+				<option value='1'> 1 </option>
+				<option value='2'> 2 </option>
+				<option value='3'> 3 </option>
+				<option value='4'> 4 </option>
+				<option value='5'> 5 </option>
+				<option value='6'> 6 </option>
+				<option value='7'> 7 </option>
+				<option value='8'> 8 </option>
+				<option value='9'> 9 </option>
+				<option value='10'> 10 </option>
+			</select>
+		</td>
+	</tr>
+</table>
+<table align="center" width="70%" border="0">
+	<tr>
+		<td> <div id="messageBox" class="message-text"></div> </td>
+	</tr>
+</table>
+</body>
+</html>

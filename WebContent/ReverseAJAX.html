@@ -1,0 +1,109 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>index</title>
+<script type='text/javascript' src='dwr/engine.js'></script>
+<script type='text/javascript' src='/DWR/dwr/interface/SessionManager.js'></script>
+<script type='text/javascript' src='dwr/util.js'></script>
+<script type='text/javascript'>
+function update(message){
+	var div = document.getElementById("messageBox");
+	var newdiv = document.createElement('div');
+  	newdiv.setAttribute('id','message');
+  	newdiv.innerHTML = message;
+  	div.appendChild(newdiv);
+}
+
+function addScriptSession(param){
+	SessionManager.addScriptSession(param, {
+  		callback:function(str) { 
+  			
+  		}
+	});
+	document.getElementById("button").disabled = false;
+	document.getElementById("select").disabled = true;
+	document.getElementById("alert").innerHTML = "Selected client is " + param;
+}
+
+function removeScriptSession(){
+	SessionManager.removeScriptSession( {
+  		callback:function(str) { 
+  		}
+	});
+	document.getElementById("button").disabled = true;
+	document.getElementById("select").selectedIndex = 0;
+	document.getElementById("select").disabled = false;
+	document.getElementById("alert").innerHTML = "No client selected";
+}
+function switchOnReverseAJAX(){
+	dwr.engine.setActiveReverseAjax(true);
+	document.getElementById("button").disabled = true;
+	document.getElementById("select").selectedIndex = 0;
+	document.getElementById("select").disabled = false;
+}
+</script>
+<style>
+.message-text {
+	color : #000000;
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	font-size : 12px;
+}
+</style>
+</head>
+<body onload="switchOnReverseAJAX()">
+<center><font face="Verdana, Arial, Helvetica, sans-serif" size="6"><b>SERVER SIDE PUSHING (REVERSE AJAX)</b></font></center>
+<table align="center" width="70%" border="0" bgcolor="#E5E5E5" class="message-text">
+	<tr>
+		<td>
+		1.
+		</td>
+		<td>
+		Open the application from 3 - 4 different client machines.
+		</td>
+	</tr>
+	<tr>
+		<td>
+		2.
+		</td>
+		<td>
+		Select different clients for different machines from the drop down.
+		</td>
+	</tr>
+	<tr>
+		<td>
+		3.
+		</td>
+		<td>
+		Watch for the server side updates.
+		</td>
+	</tr>
+</table>
+<br>
+<table align="center" width="70%" border="0" bgcolor="#E5E5E5">
+	<tr>
+		<td>
+			<font face="Verdana, Arial, Helvetica, sans-serif" size="2"><b>Select Parameter : </b></font></div>
+			<select class='message-text' onChange='addScriptSession(this.value)' id='select'>
+				<option value=''>--Select--</option>
+				<option value='1'> 1 </option>
+				<option value='2'> 2 </option>
+				<option value='3'> 3 </option>
+				<option value='4'> 4 </option>
+				<option value='5'> 5 </option>
+				<option value='6'> 6 </option>
+				<option value='7'> 7 </option>
+				<option value='8'> 8 </option>
+				<option value='9'> 9 </option>
+				<option value='10'> 10 </option>
+			</select>
+			<input type='button' class='message-text' value='Remove Session' onClick='removeScriptSession()' id='button'>
+			<span id='alert' class='message-text'></span>
+		</td>
+	</tr>
+</table>
+<table align="center" width="70%" border="0">
+	<tr>
+		<td> <div id="messageBox" class="message-text"></div> </td>
+	</tr>
+</table>
+</body>
+</html>
